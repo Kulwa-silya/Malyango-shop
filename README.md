@@ -4,16 +4,16 @@ this is a fully working and responsive django ecommerce web application the fron
 
 #Installation
 create a virtual environment by 
-python3 -m venv project_directory_name
+```python3 -m venv project_directory_name```
 
 activate the environment
-source bin/activate
+```source bin/activate```
 
 then install the necessary packages from the requirement.txt file by
-pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 then launch the app
-python manage.py runserver
+```python manage.py runserver```
 
 open the browser and test the app on 127.0.0.1:8000
 
