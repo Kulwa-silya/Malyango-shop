@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock title %}
+
+{% block content %}
+  <!--Carousel Wrapper-->
+  <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+      <!--First slide-->
+      <div class="carousel-item active">
+        <div class="view" style="background-image: url('https://media.istockphoto.com/photos/two-smartphones-with-blank-screen-soaring-on-dark-background-picture-id1315891458?b=1&k=20&m=1315891458&s=170667a&w=0&h=BUAyjvv1IRqycGAFkcq9-Nqzgv2AfB3XxcfGI9hnR3Y='); background-repeat: no-repeat; background-size: 1400px 900px;">
+
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+              <h1 class="mb-4">
+                <strong>Karibu Malyango Electronics shop</strong>
+              </h1>
+
+              <p>
+                <strong>Pata vifaa vya kielectronic kwa bei nafuu kabisa</strong>
+              </p>
+              
+            </div>
+            <!-- Content -->
+
+          </div>
+          <!-- Mask & flexbox options-->
+
+        </div>
+      </div>
+      <!--/First slide-->
+
+    </div>
+    <!--/.Slides-->
+
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+
+  </div>
+  <!--/.Carousel Wrapper-->
+  <main>
+    <div class="container">
+
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-1 mt-3 mb-5">
+        <!-- Navbar brand -->
+        <span class="navbar-brand">Categories:</span>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if not category %}active{% endif %}">
+              <a class="nav-link" href="{% url 'shop:product_list' %}">All</a>
+            </li>
+            {% for kategory in categories %}
+            <li class="nav-item {% if kategory.slug == category.slug %}active{% endif %}">
+              <a class="nav-link" href="{{ kategory.get_absolute_url }}">{{ kategory.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          <!-- Links -->
+
+          <form class="form-inline">
+            <div class="md-form my-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+          </form>
+        </div>
+        <!-- Collapsible content -->
+      </nav>
+      <!--/.Navbar-->
+
+      <!--Section: Products v.3-->
+      <section class="text-center mb-4">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+          {% for product in products %}
+            <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <!--Card-->
+            <div class="card">
+              <!--Card image-->
+              <div class="view overlay">
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/flaps.png" %}{% endif %}" class="card-img-top"
+                  alt="" style="height: 200px; object-fit: cover;">
+                <a href="{{product.get_absolute_url}}">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!--Card image-->
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="{{product.category.get_absolute_url}}" class="grey-text">
+                  <h5>{{product.category}}</h5>
+                </a>
+                <h5>
+                  <strong>
+                    <!-- {{product.get_absolute_url}} -->
+                    <a href="{{product.get_absolute_url}}" class="dark-grey-text">{{product.product_name}}</a>
+                  </strong>
+                </h5>
+                <h4 class="font-weight-bold blue-text">
+                  <strong>{{product.price}}</strong>
+                </h4>
+              </div>
+              <!--Card content-->
+            </div>
+            <!--Card-->
+          </div>
+          <!--Grid column-->
+          {% endfor %}
+        </div>
+        <!--Grid row-->
+      </section>
+      <!--Section: Products v.3-->
+
+      <!--Pagination-->
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+
+          <!--Arrow left-->
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          <li class="page-item active">
+            <a class="page-link" href="#">1
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!--Pagination-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn ">
+
+    <br class="my-1">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-facebook-f mr-3"></i>
+      </a>
+
+      <a href="https://twitter.com/MDBootstrap" target="_blank">
+        <i class="fab fa-twitter mr-3"></i>
+      </a>
+
+      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+        <i class="fab fa-github mr-3"></i>
+      </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2021 Copyright: Ngosha
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+{% endblock content %}

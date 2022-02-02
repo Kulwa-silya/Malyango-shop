@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load material_form %}
+
+{% block title %} Log-In {% endblock %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <center><p>wrong username or password</p></center>
+    {% else %}
+        <center><p>please use the form below to login</p></center>
+    {% endif %}
+    <div class = "login-form">
+        <div id="intro" class="bg-image shadow-2-strong">
+            <div class="mask d-flex align-items-center h-100">
+                <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-5 col-md-8">
+                    <form class="bg-white  rounded-5 shadow-5-strong p-5" action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                        {% form form=form %}
+                            <input type="hidden" name="next" value="{{ next }}" />
+                        {% endform %}
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
