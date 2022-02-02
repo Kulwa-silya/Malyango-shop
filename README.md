@@ -1,6 +1,23 @@
 # Malyango-shop
 this is a fully working and responsive django ecommerce web application the front end template used is MDB's freebie
 
+
+#Installation
+create a virtual environment by 
+python3 -m venv project_directory_name
+
+activate the environment
+source bin/activate
+
+then install the necessary packages from the requirement.txt file by
+pip install -r requirements.txt
+
+then launch the app
+python manage.py runserver
+
+open the browser and test the app on 127.0.0.1:8000
+
+
 ![1](https://user-images.githubusercontent.com/84856439/152113928-ea08177b-e667-4ca6-88d4-def03fcfd5c1.png)
 
 
