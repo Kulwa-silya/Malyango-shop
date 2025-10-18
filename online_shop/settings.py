@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8f8!kmhdnse(_it3@k1ds&%mryq2iz0e@cxr9p%a5a3ou_1pax
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["testing.deploy.tz"]
 
 
 # Application definition
@@ -139,3 +139,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 LOGIN_REDIRECT_URL = 'shop:product_list'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
